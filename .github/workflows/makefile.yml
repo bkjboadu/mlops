@@ -12,13 +12,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code 
+      uses: actions/checkout@v4
+
+    - name: Set Up python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
 
     - name: Install dependencies
       run: make install
 
     - name: Lint
       run: make lint
+
+    - name: Format code
+      run: make format
 
     - name: Test
       run: make test
